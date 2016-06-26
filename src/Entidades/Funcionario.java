@@ -2,9 +2,10 @@ package Entidades;
 
 import java.io.Serializable;
 
-public class Funcionario implements Serializable{
-    private String nome,numFuncional,funcao;
-    
+public class Funcionario implements Serializable {
+
+    private String nome, numFuncional, funcao;
+
     //Constantes da classe Funcionario
     public static final String ATENDENTE = "Atendente";
     public static final String MEDICO = "Médico";

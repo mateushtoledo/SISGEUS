@@ -5,13 +5,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import Controladores.ControlePrincipal;
 
-public class LimiteInterfaceAtendente extends JFrame implements ActionListener{
+public class LimiteInterfaceAtendente extends JFrame implements ActionListener {
+
     private ControlePrincipal objController;
     private JPanel painel;
     private JMenuBar barraMenu;
-    private JMenu menu,paciente,consulta,SIP;
-    private JMenuItem cadPaciente,altDadosPaciente,cadFalecimento,histConsultas;
-    private JMenuItem marcarConsulta,anularConsulta,eventosEspecialidade,sair;
+    private JMenu menu, paciente, consulta, SIP;
+    private JMenuItem cadPaciente, altDadosPaciente, cadFalecimento, histConsultas;
+    private JMenuItem marcarConsulta, anularConsulta, eventosEspecialidade, sair;
     private final ImageIcon logotipo = new ImageIcon("logotipo.png");
     private final ImageIcon pacienteIcone = new ImageIcon("pac.png");
     private final ImageIcon consultaIcone = new ImageIcon("con.png");
@@ -28,7 +29,7 @@ public class LimiteInterfaceAtendente extends JFrame implements ActionListener{
 
     public LimiteInterfaceAtendente(ControlePrincipal pCtrl) {
         objController = pCtrl;
-        
+
         //Criar os objetos do tipo JMenuItem
         sair = new JMenuItem("Sair do sistema");
         sair.setIcon(exit);
@@ -46,7 +47,7 @@ public class LimiteInterfaceAtendente extends JFrame implements ActionListener{
         eventosEspecialidade.setIcon(periodoIcon);
         histConsultas = new JMenuItem("Visualizar histórico de consultas e dados médicos");
         histConsultas.setIcon(dadosIcon);
-        
+
         //Criar os Objetos do tipo JMenu
         menu = new JMenu("Menu");
         menu.setIcon(menuIcone);
@@ -56,10 +57,10 @@ public class LimiteInterfaceAtendente extends JFrame implements ActionListener{
         consulta.setIcon(consultaIcone);
         SIP = new JMenu("Sistema de informação ao paciente");
         SIP.setIcon(sipIcone);
-        
+
         //Criar JMenuBAr
         barraMenu = new JMenuBar();
-        
+
         //Adicionar ActionListener individual aos JMenuItems
         sair.addActionListener(this);
         cadPaciente.addActionListener(new ActionListener() {
@@ -111,7 +112,7 @@ public class LimiteInterfaceAtendente extends JFrame implements ActionListener{
                 System.out.println("Historico de consultas");
             }
         });
-        
+
         //Adicionar JMenuItems aos seus respectivos menus
         paciente.add(cadPaciente);
         paciente.add(new JSeparator(JSeparator.HORIZONTAL));
@@ -124,28 +125,28 @@ public class LimiteInterfaceAtendente extends JFrame implements ActionListener{
         SIP.add(altDadosPaciente);
         SIP.add(new JSeparator(JSeparator.HORIZONTAL));
         SIP.add(histConsultas);
-        
+
         //Adicionar JMenus ao JMenu principal
         menu.add(paciente);
         menu.add(new JSeparator(JSeparator.HORIZONTAL));
         menu.add(consulta);
         menu.add(new JSeparator(JSeparator.HORIZONTAL));
         menu.add(SIP);
-        
+
         //Adicionar componentes a barra de menu
         barraMenu.add(menu);
         barraMenu.add(sair);
-        
+
         //Criar Painel
         painel = new JPanel(new BorderLayout());
         painel.setBackground(Color.white);
-        painel.add(new JLabel(logotipo),BorderLayout.CENTER);
-        
+        painel.add(new JLabel(logotipo), BorderLayout.CENTER);
+
         //Adicionar componentes e configurar JFrame
         super.setTitle("Menu de opções para atendente");
         super.setJMenuBar(barraMenu);
         super.add(painel);
-        super.setLocation(450,70);
+        super.setLocation(450, 70);
         super.setAlwaysOnTop(true);
         super.setResizable(false);
         super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -155,13 +156,12 @@ public class LimiteInterfaceAtendente extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int op = JOptionPane.showConfirmDialog(this, "Deseja sair do menu de atendente?","Verificação de segurança",JOptionPane.YES_NO_OPTION);
-        
-        if(op == JOptionPane.YES_OPTION)
-        {
-            try{
+        int op = JOptionPane.showConfirmDialog(this, "Deseja sair do menu de atendente?", "Verificação de segurança", JOptionPane.YES_NO_OPTION);
+
+        if (op == JOptionPane.YES_OPTION) {
+            try {
                 objController.salvarDados();
-            }catch(Exception exc){
+            } catch (Exception exc) {
                 System.out.println("O sistema falhou em salvar os dados!");
             }
             super.dispose();

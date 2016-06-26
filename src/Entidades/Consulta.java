@@ -3,11 +3,12 @@ package Entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Consulta implements Serializable,Comparable{
-    private String especialidade,numBeneficiarioPaciente,motivo,numFuncionalFuncionario;
-    private Date data,dataRegistro;
+public class Consulta implements Serializable, Comparable {
 
-    public Consulta(String pEspecialidade, String pNumBeneficiarioPaciente, String pMotivo, String pNumFuncionalFuncionario, Date pData,Date pRegistro) {
+    private String especialidade, numBeneficiarioPaciente, motivo, numFuncionalFuncionario;
+    private Date data, dataRegistro;
+
+    public Consulta(String pEspecialidade, String pNumBeneficiarioPaciente, String pMotivo, String pNumFuncionalFuncionario, Date pData, Date pRegistro) {
         especialidade = pEspecialidade;
         numBeneficiarioPaciente = pNumBeneficiarioPaciente;
         motivo = pMotivo;
@@ -62,9 +63,9 @@ public class Consulta implements Serializable,Comparable{
 
     @Override
     public int compareTo(Object o) {
-        Consulta c = (Consulta)o;
-        
+        Consulta c = (Consulta) o;
+
         return this.getEspecialidade().compareTo(c.getEspecialidade());
     }
-    
+
 }

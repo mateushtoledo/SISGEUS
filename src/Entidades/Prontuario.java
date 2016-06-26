@@ -3,12 +3,12 @@ package Entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Prontuario implements Serializable{
-    private String queixas,resumoExame,resumoDiagnostico,tratamentos,numBeneficiario;
+public class Prontuario implements Serializable {
+
+    private String queixas, resumoExame, resumoDiagnostico, tratamentos, numBeneficiario;
     private Date dataRegistro;
 
-    public Prontuario(String pNumBeneficiario,String pQueuixas,String pResumoExame,String pResumoDiagnostico,String pTratamentos,Date pData)
-    {
+    public Prontuario(String pNumBeneficiario, String pQueuixas, String pResumoExame, String pResumoDiagnostico, String pTratamentos, Date pData) {
         numBeneficiario = pNumBeneficiario;
         queixas = pQueuixas;
         resumoExame = pResumoExame;

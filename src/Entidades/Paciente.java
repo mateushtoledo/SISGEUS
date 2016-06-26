@@ -3,16 +3,17 @@ package Entidades;
 import java.io.Serializable;
 import java.util.*;
 
-public class Paciente implements Serializable{
+public class Paciente implements Serializable {
+
     private ArrayList<Prontuario> dadosMedicos;
-    private String nome,numBeneficiario,sexo,endereco,telefone;
+    private String nome, numBeneficiario, sexo, endereco, telefone;
     private Date nascimento;
-    
+
     //Constantes da classe paciente
     public static final String MASCULINO = "Masculino";
     public static final String FEMININO = "Feminino";
 
-    public Paciente(String pNome,String pNumBeneficiaro,String pSexo,String pEndereco,String pTelefone,Date pNascimento) {
+    public Paciente(String pNome, String pNumBeneficiaro, String pSexo, String pEndereco, String pTelefone, Date pNascimento) {
         nome = pNome;
         numBeneficiario = pNumBeneficiaro;
         sexo = pSexo;
@@ -73,5 +74,5 @@ public class Paciente implements Serializable{
     public Date getNascimento() {
         return nascimento;
     }
-    
+
 }

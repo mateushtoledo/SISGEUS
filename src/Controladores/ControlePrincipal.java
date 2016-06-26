@@ -3,6 +3,7 @@ package Controladores;
 import Limites.*;
 
 public class ControlePrincipal {
+
     private LimitePrincipal objLimitePrincipal;
     private ControleAnulacao objCtrlAnulacao;
     private ControleConsulta objCtrlConsulta;
@@ -45,19 +46,16 @@ public class ControlePrincipal {
     public ControleProntuario getCtrlProntuario() {
         return objCtrlProntuario;
     }
-    
-    public String getIdentificacaoFuncionario()
-    {
+
+    public String getIdentificacaoFuncionario() {
         return objLimitePrincipal.getNumFuncional();
     }
-    
-    public void interfacePrincipalAtendente()
-    {
+
+    public void interfacePrincipalAtendente() {
         new LimiteInterfaceAtendente(this);
     }
-    
-    public void salvarDados() throws Exception
-    {
+
+    public void salvarDados() throws Exception {
         objCtrlAnulacao.salvarAnulacoes();
         objCtrlConsulta.salvarConsultas();
         objCtrlFalecimento.salvarFalecimentos();
@@ -65,17 +63,16 @@ public class ControlePrincipal {
         objCtrlPaciente.salvarPacientes();
         objCtrlProntuario.salvarProntuarios();
     }
-    
-    public void recuperarDados()
-    {
-        try{
+
+    public void recuperarDados() {
+        try {
             objCtrlAnulacao.recuperarAnulacoes();
             objCtrlConsulta.recuperarConsultas();
             objCtrlFalecimento.recuperarFalecimentos();
             objCtrlFuncionario.recuperarFuncionarios();
             objCtrlPaciente.recuperarPacientes();
             objCtrlProntuario.recuperarProntuarios();
-        }catch(Exception exc){
+        } catch (Exception exc) {
             System.out.println("O sistema falhou na recuperação dos dados salvos em arquivo!");
             System.out.println(exc.getMessage());
         }
