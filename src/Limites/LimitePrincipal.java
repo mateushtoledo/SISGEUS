@@ -16,7 +16,7 @@ public class LimitePrincipal extends JFrame implements ActionListener {
     private JButton entrar;
     private Container contentPane;
     private int width, height;
-    private final ImageIcon imagem = new ImageIcon("logo.jpg");
+    private final ImageIcon imagem = new ImageIcon("logo_.png");
 
     public LimitePrincipal(ControlePrincipal pCtrl) {
         objControlador = pCtrl;
