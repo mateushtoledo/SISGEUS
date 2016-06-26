@@ -45,9 +45,9 @@ public class LimitePrincipal extends JFrame implements ActionListener {
 
         //Criar os paineis
         painel = new JPanel();
-        painel.setBackground(Color.DARK_GRAY);
+        painel.setBackground(new Color(81,98,67));
         aux = new JPanel();
-        aux.setBackground(Color.DARK_GRAY);
+        aux.setBackground(new Color(81,98,67));
         painel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 10));
         principal = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         principal.setBackground(Color.white);
