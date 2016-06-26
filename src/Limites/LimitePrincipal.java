@@ -3,6 +3,7 @@ package Limites;
 import Controladores.ControlePrincipal;
 import javax.swing.*;
 import java.awt.*;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.*;
 
 public class LimitePrincipal extends JFrame implements ActionListener {
@@ -85,6 +86,8 @@ public class LimitePrincipal extends JFrame implements ActionListener {
         super.setSize(width, height);
         super.setResizable(true);
         super.setVisible(true);
+        //setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setExtendedState(MAXIMIZED_BOTH); // TELA INICIA MAXIMIZADA
     }
 
     /*
