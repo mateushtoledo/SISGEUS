@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Paciente implements Serializable {
-
-    private ArrayList<Prontuario> dadosMedicos;
     private String nome, numBeneficiario, sexo, endereco, telefone;
     private Date nascimento;
 
@@ -20,7 +18,6 @@ public class Paciente implements Serializable {
         endereco = pEndereco;
         telefone = pTelefone;
         nascimento = pNascimento;
-        dadosMedicos = new ArrayList<>();
     }
 
     public void setNome(String nome) {
@@ -45,10 +42,6 @@ public class Paciente implements Serializable {
 
     public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
-    }
-
-    public ArrayList<Prontuario> getDadosMedicos() {
-        return dadosMedicos;
     }
 
     public String getNome() {

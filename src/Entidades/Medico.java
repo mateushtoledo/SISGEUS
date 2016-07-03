@@ -11,11 +11,14 @@ public class Medico extends Funcionario implements Serializable {
     public Medico(String pNome, String pNumFuncional, String pFuncao, String pEspecializacao) {
         super(pNome, pNumFuncional, pFuncao);
         especializacao = pEspecializacao;
-        consultas = new ArrayList<>();
     }
 
     public void setEspecializacao(String especializacao) {
         this.especializacao = especializacao;
+    }
+
+    public String getEspecializacao() {
+        return especializacao;
     }
 
     public boolean marcarConsulta(String pEspecialidade, String pNumBeneficiarioPaciente, String pMotivo, String pNumFuncionalFuncionario, Date pData, Date pRegistro) {
@@ -44,12 +47,7 @@ public class Medico extends Funcionario implements Serializable {
         return false;
     }
 
-    public String getEspecializacao() {
-        return especializacao;
-    }
-
     public ArrayList<Consulta> getConsultas() {
         return consultas;
     }
-
 }

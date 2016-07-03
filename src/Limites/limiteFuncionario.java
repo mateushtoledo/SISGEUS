@@ -1,12 +1,13 @@
 package Limites;
 
+import Controladores.ControleFuncionario;
+import Entidades.Funcionario;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.*;
-import Entidades.*;
-import Controladores.ControleFuncionario;
+import javax.swing.border.*;
 
-public class LimiteCadastroFuncionario extends JFrame implements ActionListener {
+public class limiteFuncionario extends JFrame implements ActionListener {
 
     private JPanel painelFuncionario;
     private JMenuBar barraMenu;
@@ -18,7 +19,8 @@ public class LimiteCadastroFuncionario extends JFrame implements ActionListener 
     private ControleFuncionario objController;
     private Container contentPane;
 
-    public LimiteCadastroFuncionario(ControleFuncionario pControle) {
+    public limiteFuncionario(ControleFuncionario pControle) {
+        super("Cadastro de funcionários");
         objController = pControle;
 
         //Criar os objetos do tipo JLabel
@@ -28,12 +30,12 @@ public class LimiteCadastroFuncionario extends JFrame implements ActionListener 
         especializacaoJL = new JLabel("Especialização :");
         especializacaoJL.setVisible(false);
         //Criar JLabel com aviso para o usuario
-        aviso = new JLabel("Para cadastrar um médico deve ser informada sua especialização");
+        aviso = new JLabel("  Para cadastrar um médico deve ser informada sua especialização");
         aviso.setVisible(false);
         aviso.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.red), "Aviso :"));
 
         //Criar os objetos do tipo TextField
-        nomeTF = new JTextField(20);
+        nomeTF = new JTextField(25);
         numFuncionalTF = new JTextField(12);
         especializacaoTF = new JTextField(12);
         especializacaoTF.setVisible(false);
@@ -41,7 +43,7 @@ public class LimiteCadastroFuncionario extends JFrame implements ActionListener 
         //Criar JMenuBar, JMenuItem e configura-los
         barraMenu = new JMenuBar();
         barraMenu.setForeground(Color.DARK_GRAY);
-        sair = new JMenuItem("Salvar alterações e sair");
+        sair = new JMenuItem("Sair e Salvar ");
         sair.addActionListener(this);
         barraMenu.add(sair);
 
@@ -81,45 +83,57 @@ public class LimiteCadastroFuncionario extends JFrame implements ActionListener 
         painelFuncionario = new JPanel();
         painelFuncionario.setLayout(spring);
         painelFuncionario.add(aviso);
-        spring.putConstraint(SpringLayout.NORTH, aviso, 20, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, aviso, 160, SpringLayout.WEST, painelFuncionario);
+        int x = 20, y = 20;
+        
+        JPanel line = new JPanel();
+        //line.add(new JLabel("\n"));
+        line.setBackground(new Color(81, 98, 67));
+        painelFuncionario.add(line);
+        spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, painelFuncionario);
+        
+        spring.putConstraint(SpringLayout.NORTH, aviso, y + 10, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, aviso, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(nomeJL);
-        spring.putConstraint(SpringLayout.NORTH, nomeJL, 170, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, nomeJL, 130, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, nomeJL, y + 60, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, nomeJL, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(nomeTF);
-        spring.putConstraint(SpringLayout.NORTH, nomeTF, 170, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, nomeTF, 195, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, nomeTF, y + 60, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, nomeTF, x + 140, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(funcaoJL);
-        spring.putConstraint(SpringLayout.NORTH, funcaoJL, 170, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, funcaoJL, 480, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, funcaoJL, y + 90, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, funcaoJL, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(funcao);
-        spring.putConstraint(SpringLayout.NORTH, funcao, 167, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, funcao, 550, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, funcao, y + 90, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, funcao, x + 140, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(numFuncionalJL);
-        spring.putConstraint(SpringLayout.NORTH, numFuncionalJL, 220, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, numFuncionalJL, 130, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, numFuncionalJL, y + 120, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, numFuncionalJL, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(numFuncionalTF);
-        spring.putConstraint(SpringLayout.NORTH, numFuncionalTF, 220, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, numFuncionalTF, 277, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, numFuncionalTF, y + 120, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, numFuncionalTF, x + 140, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(especializacaoJL);
-        spring.putConstraint(SpringLayout.NORTH, especializacaoJL, 270, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, especializacaoJL, 130, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, especializacaoJL, y + 150, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, especializacaoJL, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(especializacaoTF);
-        spring.putConstraint(SpringLayout.NORTH, especializacaoTF, 270, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, especializacaoTF, 277, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, especializacaoTF, y + 150, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, especializacaoTF, x + 140, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(cadFuncionario);
-        spring.putConstraint(SpringLayout.NORTH, cadFuncionario, 340, SpringLayout.NORTH, painelFuncionario);
-        spring.putConstraint(SpringLayout.WEST, cadFuncionario, 300, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.NORTH, cadFuncionario, y + 205, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, cadFuncionario, x + 255, SpringLayout.WEST, painelFuncionario);
 
-        super.setTitle("Cadastro de funcionários");
-        super.setJMenuBar(barraMenu);
-        super.add(painelFuncionario);
-        super.setAlwaysOnTop(true);
-        super.setLocation(450, 70);
-        super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        super.setSize(800, 600);
-        super.setResizable(false);
-        super.setVisible(true);
+        setJMenuBar(barraMenu);
+        add(painelFuncionario);
+        setAlwaysOnTop(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(520, 330);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        //setUndecorated(true);
+        //getRootPane().setBorder(BorderFactory.createLineBorder(new Color(81, 98, 67)));
+       // getRootPane().setBorder(BorderFactory.createEtchedBorder());
+        setVisible(true);
     }
 
     @Override
@@ -160,14 +174,16 @@ public class LimiteCadastroFuncionario extends JFrame implements ActionListener 
                 numFuncionalTF.setText("");
             }
         } else {
-            int op = JOptionPane.showConfirmDialog(this, "Deseja encerrar o cadastro?");
+            int op = JOptionPane.showConfirmDialog(this, "Deseja encerrar o cadastro?","Encerrar o cadastro",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE);
 
             if (op == JOptionPane.YES_OPTION) {
                 try {
                     objController.salvarFuncionarios();
                     super.dispose();
                 } catch (Exception exc) {
-                    System.out.println("O sistema falhou ao tentar salvar os dados referentes à funcionários!");
+                    System.out.println("Falha ao salvar os dados!");
                 }
             }
         }

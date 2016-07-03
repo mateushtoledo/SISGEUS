@@ -3,8 +3,7 @@ package Entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Falecimento implements Serializable {
-
+public class Falecimento implements Serializable{
     private Date data;
     private String causa;
 
@@ -32,5 +31,5 @@ public class Falecimento implements Serializable {
     public String getCausa() {
         return causa;
     }
-
+    
 }

@@ -7,142 +7,178 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class LimiteCadastroFalecimento extends JFrame implements ActionListener {
-
+public class LimiteCadastroFalecimento extends JFrame implements ActionListener{
     private ControlePrincipal objControlador;
     private Container contentPane;
-    private JPanel selecionarPac, informarData, informarMotivo, botaoCadastro, avisoP;
-    private JLabel pacienteJL, data, motivo, aviso, b1, b2;
+    private JPanel painelFalecimento;
+    private JLabel pacienteJL,data,motivo,aviso,b1,b2;
     private JTextField motivoTF;
-    private JComboBox dia, mes, ano, pacientes;
+    private JComboBox dia,mes,ano,pacientes;
     private JButton cadastrar;
-
+    
     public LimiteCadastroFalecimento(ControlePrincipal pCtrl) {
         objControlador = pCtrl;
-
+        
         //Criar os objetos do tipo JLabel
         b1 = new JLabel("/");
         b2 = new JLabel("/");
         pacienteJL = new JLabel("Selecione o paciente falecido:");
         data = new JLabel("Data do falecimento:");
         motivo = new JLabel("Motivo:");
-        aviso = new JLabel("O cadastro do falecimento implica na anulação de todas as consultas do paciente");
-        aviso.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.red), "Aviso: "));
-
+        aviso = new JLabel(" O cadastro do falecimento implica na anulação de todas as consultas do paciente ");
+        aviso.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.red),"Aviso: "));
+        
         //Criar os objetos do tipo comboBox
         dia = new JComboBox();
         mes = new JComboBox();
         ano = new JComboBox();
         pacientes = new JComboBox(objControlador.getCtrlPaciente().getDescricaoPacientes());
-
+        
         //Adicionar itens aos objetos do tipo ComboBox
-        for (int i = 1; i <= 30; i++) {
+        for(int i=1 ; i<=30 ; i++)
+        {
             dia.addItem(i);
         }
-        for (int i = 1; i <= 12; i++) {
+        for(int i=1 ; i<=12 ; i++)
+        {
             mes.addItem(i);
         }
         ano.addItem(2016);
         ano.addItem(2017);
         ano.addItem(2018);
-
+        
         //Criar JButton
         cadastrar = new JButton("Cadastrar falecimento");
+        cadastrar.setForeground(Color.red);
         cadastrar.addActionListener(this);
-
+        
         //Criar JTextField
-        motivoTF = new JTextField(26);
+        motivoTF = new JTextField(30);
+        
+        //Criar o gerenciador de Layout
+        SpringLayout spring = new SpringLayout();
 
-        //Criar objetos do tipo JPanel
-        avisoP = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        selecionarPac = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        informarData = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        informarMotivo = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        botaoCadastro = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-        //Obter Container padrao da JFrame e definir gerenciador de Layout
-        contentPane = super.getContentPane();
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-
-        //Adicionar componentes aos seus devidos paineis
-        avisoP.add(aviso);
-        selecionarPac.add(pacienteJL);
-        selecionarPac.add(pacientes);
-        informarData.add(data);
-        informarData.add(dia);
-        informarData.add(b1);
-        informarData.add(mes);
-        informarData.add(b2);
-        informarData.add(ano);
-        informarMotivo.add(motivo);
-        informarMotivo.add(motivoTF);
-        botaoCadastro.add(cadastrar);
-        contentPane.add(avisoP);
-        contentPane.add(Box.createVerticalGlue());
-        contentPane.add(selecionarPac);
-        contentPane.add(informarData);
-        contentPane.add(informarMotivo);
-        contentPane.add(botaoCadastro);
-        contentPane.add(Box.createVerticalGlue());
-        contentPane.add(Box.createVerticalGlue());
-        contentPane.add(Box.createVerticalGlue());
-
+        //Criar o painel de cadastro de funcionário e adicionar componentes a ele
+        painelFalecimento = new JPanel();
+        painelFalecimento.setLayout(spring);
+        
+        int x = 20, y = 20;
+        
+        JPanel line = new JPanel();
+        //line.add(new JLabel("\n"));
+        line.setBackground(new Color(81, 98, 67));
+        painelFalecimento.add(line);
+        spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, painelFalecimento);
+        spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, painelFalecimento);
+        
+        spring.putConstraint(SpringLayout.NORTH, aviso, y + 10, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, aviso, x + 20, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(aviso);
+        spring.putConstraint(SpringLayout.NORTH, pacienteJL, y + 63, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, pacienteJL, x + 20, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(pacienteJL);
+        spring.putConstraint(SpringLayout.NORTH, pacientes, y + 60, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, pacientes, x + 220, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(pacientes);     
+        
+        spring.putConstraint(SpringLayout.NORTH, data, y + 113, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, data, x + 20, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(data);
+        spring.putConstraint(SpringLayout.NORTH, dia, y + 110, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, dia, x + 160, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(dia);
+        spring.putConstraint(SpringLayout.NORTH, b1, y + 113, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, b1, x + 210, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(b1);
+        spring.putConstraint(SpringLayout.NORTH, mes, y + 110, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, mes, x + 220, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(mes);
+        spring.putConstraint(SpringLayout.NORTH, b2, y + 113, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, b2, x +270, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(b2);
+        spring.putConstraint(SpringLayout.NORTH, ano, y + 110, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, ano, x + 280, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(ano);
+        spring.putConstraint(SpringLayout.NORTH, motivo, y + 160, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, motivo, x + 20, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(motivo);
+        spring.putConstraint(SpringLayout.NORTH, motivoTF, y + 160, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, motivoTF, x + 160, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(motivoTF);
+        spring.putConstraint(SpringLayout.NORTH, cadastrar, y + 250, SpringLayout.NORTH, painelFalecimento);
+        spring.putConstraint(SpringLayout.WEST, cadastrar, x + 335, SpringLayout.WEST, painelFalecimento);
+        painelFalecimento.add(cadastrar);
+        
+        add(painelFalecimento);
+        //Definir configuracoes da JFrame
         super.setTitle("Cadastrar falecimento de paciente");
-        super.setSize(800, 600);
-        super.setLocation(450, 70);
-        super.setAlwaysOnTop(true);
+        super.setSize(560, 350);
+        super.setLocationRelativeTo(null);
         super.setResizable(false);
-        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        super.setAlwaysOnTop(true);
         super.setVisible(true);
     }
-
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        int op = JOptionPane.showConfirmDialog(this, "Deseja cadastrar om falecimento desse paciente?");
-
-        if (op == JOptionPane.YES_OPTION) {
-            String motivo = motivoTF.getText();
-            String codigo = "", aux;
-            int pDia, pMes, pAno;
+        int op = JOptionPane.showConfirmDialog(this, "Deseja cadastrar o falecimento desse paciente?");
+        
+        if(op == JOptionPane.YES_OPTION)
+        {
+            String pMotivo = motivoTF.getText();
+            String codigo = "",aux;
+            int pDia,pMes,pAno;
 
             pDia = (int) dia.getItemAt(dia.getSelectedIndex());
             pMes = (int) mes.getItemAt(mes.getSelectedIndex());
             pAno = (int) ano.getItemAt(ano.getSelectedIndex());
-
-            aux = (String) pacientes.getItemAt(pacientes.getSelectedIndex());
-            int pos = aux.indexOf("-");
-            for (int i = 0; i < pos - 1; i++) {
+            
+            aux = (String) pacientes.getItemAt(pacientes.getSelectedIndex());                
+            int pos = aux.indexOf("-");                
+            for(int i=0 ; i<pos-1 ; i++)
+            {
                 codigo += aux.charAt(i);
             }
-
+            
+            
             //Passo 1: Obter consultas desse paciente cadastradas
             ArrayList<Consulta> eventos = objControlador.getCtrlConsulta().getConsultasPaciente(codigo);
-
-            if (!eventos.isEmpty()) {
+            
+            if(!eventos.isEmpty())
+            {
                 //Nesse caso devo remover as consultas da agenda do medico
-                for (Consulta c : eventos) {
-                    objControlador.getCtrlFuncionario().anularConsultaDaAgendaDoMedico(c);
+                for(Consulta c : eventos)
+                {
+                    objControlador.getCtrFuncionario().anularConsultaDaAgendaDoMedico(c);
                 }
                 //Devo cadastrar a anulacao de todas as consultas desse paciente
                 //O motivo da anulacao sera a morte do paciente
-                for (Consulta c : eventos) {
-                    objControlador.getCtrlAnulacao().cadastrarAnulacao(c, new Date(pAno, pMes, pDia), "O paciente faleceu");
+                for(Consulta c:  eventos)
+                {
+                    objControlador.getCtrlAnulacao().cadastrarAnulacao(c,new Date(pAno,pMes,pDia),"O paciente faleceu");
                 }
                 //Devo remover todas as consultas desse paciente da lista de consultas do sistema
-                for (Consulta c : eventos) {
+                for(Consulta c : eventos)
+                {
                     //Testar se esse metodo remove realmente funciona
                     objControlador.getCtrlConsulta().anularConsulta(c);
                 }
             }
-            objControlador.getCtrlPaciente().cadastrarFalecimentoNumBene(codigo);
+            objControlador.getCtrlPaciente().cadastrarFalecimento(codigo);
             //Devo cadastrar o falecimento dele
-
-            if (motivo.isEmpty()) {
+            
+            if(pMotivo.isEmpty())
+            {
                 objControlador.getCtrlFalecimento().cadastrarFalecimento(pDia, pMes, pAno);
                 JOptionPane.showMessageDialog(this, "Falecimento cadastrado!");
                 super.dispose();
-            } else {
-                objControlador.getCtrlFalecimento().cadastrarFalecimento(pDia, pMes, pAno, motivo);
+            }
+            else
+            {
+                objControlador.getCtrlFalecimento().cadastrarFalecimento(pDia, pMes, pAno,pMotivo);
                 JOptionPane.showMessageDialog(this, "Falecimento cadastrado!");
                 super.dispose();
             }

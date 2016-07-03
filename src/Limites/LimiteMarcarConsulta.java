@@ -2,6 +2,7 @@ package Limites;
 
 import Entidades.*;
 import Controladores.ControlePrincipal;
+import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Date;
@@ -19,9 +20,9 @@ public class LimiteMarcarConsulta extends JFrame implements ActionListener {
         objControlador = pCtrl;
 
         //Criar objetos do tipo JLabel
-        dataJL = new JLabel("Data da consulta (DD/MM/AAAA) :");
-        horarioJL = new JLabel("Horário da consulta :");
-        nomePacienteJL = new JLabel("Número do beneficiário :");
+        dataJL = new JLabel("Data da consulta:");
+        horarioJL = new JLabel("Horário da consulta:");
+        nomePacienteJL = new JLabel("Nº do beneficiário:");
         especialidadeJL = new JLabel("Especialidade da consulta :");
         motivoJL = new JLabel("Motivo da consulta :");
         barra1JL = new JLabel("/");
@@ -54,12 +55,13 @@ public class LimiteMarcarConsulta extends JFrame implements ActionListener {
         minutos.addItem("30");
 
         //Criar ojetos do tipo TextField
-        nomePacienteTF = new JTextField(20);
-        especialidadeTF = new JTextField(18);
-        motivoTF = new JTextField(22);
+        nomePacienteTF = new JTextField(24);
+        especialidadeTF = new JTextField(24);
+        motivoTF = new JTextField(24);
 
         //Criar Botao e adicionar listener a ele
         marcarConsulta = new JButton("Marcar consulta");
+        //marcarConsulta.setForeground(Color.red);
         marcarConsulta.addActionListener(this);
 
         //Criar painel
@@ -70,64 +72,76 @@ public class LimiteMarcarConsulta extends JFrame implements ActionListener {
         painel.setLayout(spring);
 
         //Adicionar componentes ao painel
-        painel.add(nomePacienteJL);
-        spring.putConstraint(SpringLayout.NORTH, nomePacienteJL, 125, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, nomePacienteJL, 170, SpringLayout.WEST, painel);
-        painel.add(nomePacienteTF);
-        spring.putConstraint(SpringLayout.NORTH, nomePacienteTF, 125, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, nomePacienteTF, 350, SpringLayout.WEST, painel);
-        painel.add(motivoJL);
-        spring.putConstraint(SpringLayout.NORTH, motivoJL, 175, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, motivoJL, 170, SpringLayout.WEST, painel);
-        painel.add(motivoTF);
-        spring.putConstraint(SpringLayout.NORTH, motivoTF, 175, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, motivoTF, 330, SpringLayout.WEST, painel);
-        painel.add(dataJL);
-        spring.putConstraint(SpringLayout.NORTH, dataJL, 275, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, dataJL, 170, SpringLayout.WEST, painel);
-        painel.add(dia);
-        spring.putConstraint(SpringLayout.NORTH, dia, 273, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, dia, 410, SpringLayout.WEST, painel);
-        painel.add(barra1JL);
-        spring.putConstraint(SpringLayout.NORTH, barra1JL, 275, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, barra1JL, 465, SpringLayout.WEST, painel);
-        painel.add(mes);
-        spring.putConstraint(SpringLayout.NORTH, mes, 273, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, mes, 485, SpringLayout.WEST, painel);
-        painel.add(barra2JL);
-        spring.putConstraint(SpringLayout.NORTH, barra2JL, 275, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, barra2JL, 540, SpringLayout.WEST, painel);
-        painel.add(ano);
-        spring.putConstraint(SpringLayout.NORTH, ano, 273, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, ano, 555, SpringLayout.WEST, painel);
-        painel.add(horarioJL);
-        spring.putConstraint(SpringLayout.NORTH, horarioJL, 325, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, horarioJL, 170, SpringLayout.WEST, painel);
-        painel.add(horas);
-        spring.putConstraint(SpringLayout.NORTH, horas, 323, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, horas, 340, SpringLayout.WEST, painel);
-        painel.add(pontosJL);
-        spring.putConstraint(SpringLayout.NORTH, pontosJL, 325, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, pontosJL, 390, SpringLayout.WEST, painel);
-        painel.add(minutos);
-        spring.putConstraint(SpringLayout.NORTH, minutos, 323, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, minutos, 402, SpringLayout.WEST, painel);
-        painel.add(especialidadeJL);
-        spring.putConstraint(SpringLayout.NORTH, especialidadeJL, 225, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, especialidadeJL, 170, SpringLayout.WEST, painel);
-        painel.add(especialidadeTF);
-        spring.putConstraint(SpringLayout.NORTH, especialidadeTF, 225, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, especialidadeTF, 370, SpringLayout.WEST, painel);
-        painel.add(marcarConsulta);
-        spring.putConstraint(SpringLayout.NORTH, marcarConsulta, 420, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, marcarConsulta, 330, SpringLayout.WEST, painel);
+        int x = 50, y = 40;
+        //Adicionar componentes ao painel        line.setBackground(new Color(81, 98, 67));
+        JPanel line = new JPanel();
+        line.setBackground(new Color(81, 98, 67));
+        spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, painel);
+        spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, painel);
+        painel.add(line);
 
+        spring.putConstraint(SpringLayout.NORTH, nomePacienteJL, y + 10, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, nomePacienteJL, x - 20, SpringLayout.WEST, painel);
+        painel.add(nomePacienteJL);
+        spring.putConstraint(SpringLayout.NORTH, nomePacienteTF, y + 10, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, nomePacienteTF, x + 140, SpringLayout.WEST, painel);
+        painel.add(nomePacienteTF);
+
+        spring.putConstraint(SpringLayout.NORTH, motivoJL, y + 40, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, motivoJL, x - 20, SpringLayout.WEST, painel);
+        painel.add(motivoJL);
+        spring.putConstraint(SpringLayout.NORTH, motivoTF, y + 40, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, motivoTF, x + 140, SpringLayout.WEST, painel);
+        painel.add(motivoTF);
+
+        painel.add(dataJL);
+        spring.putConstraint(SpringLayout.NORTH, dataJL, y + 73, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, dataJL, x - 20, SpringLayout.WEST, painel);
+        painel.add(dia);
+        spring.putConstraint(SpringLayout.NORTH, dia, y + 70, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, dia, x + 140, SpringLayout.WEST, painel);
+        painel.add(barra1JL);
+        spring.putConstraint(SpringLayout.NORTH, barra1JL, y + 73, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, barra1JL, x + 190, SpringLayout.WEST, painel);
+        painel.add(mes);
+        spring.putConstraint(SpringLayout.NORTH, mes, y + 70, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, mes, x + 200, SpringLayout.WEST, painel);
+        painel.add(barra2JL);
+        spring.putConstraint(SpringLayout.NORTH, barra2JL, y + 73, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, barra2JL, x + 250, SpringLayout.WEST, painel);
+        painel.add(ano);
+        spring.putConstraint(SpringLayout.NORTH, ano, y + 70, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, ano, x + 260, SpringLayout.WEST, painel);
+        painel.add(horarioJL);
+        spring.putConstraint(SpringLayout.NORTH, horarioJL, y + 113, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, horarioJL, x - 20, SpringLayout.WEST, painel);
+        painel.add(horas);
+        spring.putConstraint(SpringLayout.NORTH, horas, y + 110, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, horas, x + 140, SpringLayout.WEST, painel);
+        painel.add(pontosJL);
+        spring.putConstraint(SpringLayout.NORTH, pontosJL, y + 113, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, pontosJL, x + 190, SpringLayout.WEST, painel);
+        painel.add(minutos);
+        spring.putConstraint(SpringLayout.NORTH, minutos, y + 110, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, minutos, x + 200, SpringLayout.WEST, painel);
+        painel.add(especialidadeJL);
+        spring.putConstraint(SpringLayout.NORTH, especialidadeJL, y + 140, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, especialidadeJL, x-20, SpringLayout.WEST, painel);
+        painel.add(especialidadeTF);
+        spring.putConstraint(SpringLayout.NORTH, especialidadeTF, y + 140, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, especialidadeTF, x + 140, SpringLayout.WEST, painel);
+        painel.add(marcarConsulta);
+        spring.putConstraint(SpringLayout.NORTH, marcarConsulta, y + 220, SpringLayout.NORTH, painel);
+        spring.putConstraint(SpringLayout.WEST, marcarConsulta, x + 280, SpringLayout.WEST, painel);
+
+        //Definir configruacoes da JFrame e adicionar painel
         super.setTitle("Marcar consulta");
         super.add(painel);
         super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        super.setSize(800, 600);
+        super.setSize(500, 350);
         super.setResizable(false);
-        super.setLocation(450, 70);
+        super.setLocationRelativeTo(null);
         super.setAlwaysOnTop(true);
         super.setVisible(true);
     }
@@ -179,12 +193,12 @@ public class LimiteMarcarConsulta extends JFrame implements ActionListener {
                 }
                 pData = new Date(pAno, pMes, pDia, pHoras, pMinutos);
                 //Verificar se foi localizado um medico e marcada a consulta na agenda dele
-                doctor = objControlador.getCtrlFuncionario().marcarConsulta(pEspecialidade, pNumBeneficiario, pMotivo, pNumFuncional, pData, new Date());
+                doctor = objControlador.getCtrFuncionario().marcarConsulta(pEspecialidade, pNumBeneficiario, pMotivo, pNumFuncional, pData, new Date());
 
                 if (doctor == null) {
                     JOptionPane.showMessageDialog(this, "Não há nenhum médico disponível para essa consulta!");
                 } else {
-                    objControlador.getCtrlConsulta().adicionarConsulta(pEspecialidade, pNumBeneficiario, pMotivo, pNumFuncional, pData, new Date());
+                    //objControlador.getCtrlConsulta().adicionarConsulta(pEspecialidade, pNumBeneficiario, pMotivo, pNumFuncional, pData, new Date());
                     JOptionPane.showMessageDialog(this, "Consulta marcada com o médico(a) " + doctor.getNome() + "!");
                     //Limpar os campos de entrada de texto
                     nomePacienteTF.setText("");

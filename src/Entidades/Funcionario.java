@@ -17,16 +17,16 @@ public class Funcionario implements Serializable {
         funcao = pFuncao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String pNome) {
+        nome = pNome;
     }
 
-    public void setNumFuncional(String numFuncional) {
-        this.numFuncional = numFuncional;
+    public void setNumFuncional(String pNumFuncional) {
+        numFuncional = pNumFuncional;
     }
 
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
+    public void setFuncao(String pFuncao) {
+        funcao = pFuncao;
     }
 
     public String getNome() {

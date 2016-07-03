@@ -10,7 +10,6 @@ import java.util.*;
 public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
 
     private ControlePrincipal objController;
-    Consulta c = null;
     private Container contentPane;
     private JPanel buscarConsulta, anularConsulta;
     private SpringLayout spring;
@@ -19,7 +18,9 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
     private JTextField motivoTF, numBeneTF;
     private JComboBox diaCB, mesCB, anoCB, horasCB, minutosCB;
     private JButton buscarCon, anularCon;
+    private Consulta c = null;
 
+    //Constantes criadas para auxiliar na utilizacao do CardLayout
     public static final String ANULAR = "ANULAR";
     public static final String BUSCAR = "BUSCAR";
 
@@ -28,7 +29,7 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
 
         //Criar os objetos do tipo JLabel
         numBeneJL = new JLabel("Número de beneficiário:");
-        dataJL = new JLabel("Data da consulta (DD/MM/AAAA):");
+        dataJL = new JLabel("Data da consulta:");
         horarioJL = new JLabel("Horário da consulta:");
         motivoJL = new JLabel("Informe o motivo da anulação:");
         step1JL = new JLabel("Passo 1 de 2: Buscar a consulta que será anulada");
@@ -77,11 +78,13 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
 
         //Criar os objetos do tipo JButton e adicionar Listener a eles
         buscarCon = new JButton("Buscar consulta");
+        buscarCon.setForeground(Color.red);
         buscarCon.addActionListener(this);
         anularCon = new JButton("Anular consulta");
+        anularCon.setForeground(Color.red);
         anularCon.addActionListener(this);
 
-        //Criar os objetos do tipo JPanel e Container
+        //Criar os objetos do tipo JPanel e utilizarContainer padrao da JFrame
         contentPane = super.getContentPane();
         buscarConsulta = new JPanel();
         anularConsulta = new JPanel();
@@ -95,79 +98,90 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
         buscarConsulta.setLayout(spring);
         anularConsulta.setLayout(spring);
 
-        //Adicionar componentes ao painel que realiza busca por consulta
-        buscarConsulta.add(numBeneJL);
-        spring.putConstraint(SpringLayout.NORTH, numBeneJL, 190, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, numBeneJL, 180, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(numBeneTF);
-        spring.putConstraint(SpringLayout.NORTH, numBeneTF, 190, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, numBeneTF, 390, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(dataJL);
-        spring.putConstraint(SpringLayout.NORTH, dataJL, 270, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, dataJL, 180, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(diaCB);
-        spring.putConstraint(SpringLayout.NORTH, diaCB, 267, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, diaCB, 425, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(b1);
-        spring.putConstraint(SpringLayout.NORTH, b1, 270, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, b1, 480, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(mesCB);
-        spring.putConstraint(SpringLayout.NORTH, mesCB, 267, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, mesCB, 495, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(b2);
-        spring.putConstraint(SpringLayout.NORTH, b2, 270, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, b2, 550, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(anoCB);
-        spring.putConstraint(SpringLayout.NORTH, anoCB, 267, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, anoCB, 565, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(horarioJL);
-        spring.putConstraint(SpringLayout.NORTH, horarioJL, 347, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, horarioJL, 180, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(horasCB);
-        spring.putConstraint(SpringLayout.NORTH, horasCB, 337, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, horasCB, 340, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(pt);
-        spring.putConstraint(SpringLayout.NORTH, pt, 340, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, pt, 395, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(minutosCB);
-        spring.putConstraint(SpringLayout.NORTH, minutosCB, 337, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, minutosCB, 410, SpringLayout.WEST, buscarConsulta);
-        buscarConsulta.add(buscarCon);
-        spring.putConstraint(SpringLayout.NORTH, buscarCon, 430, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, buscarCon, 320, SpringLayout.WEST, buscarConsulta);
+        //Adicionar componentes ao painel
+        int x = 20, y = 40;
+        //Adicionar componentes ao painel        line.setBackground(new Color(81, 98, 67));
+        JPanel line = new JPanel();
+        line.setBackground(new Color(81, 98, 67));
+        spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, buscarConsulta);
+        spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, buscarConsulta);
+        buscarConsulta.add(line);
+
+        //Adicionar componentes ao painel que realiza busca por consulta y- 180 x-160
         buscarConsulta.add(step1JL);
-        spring.putConstraint(SpringLayout.NORTH, step1JL, 30, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, step1JL, 220, SpringLayout.WEST, buscarConsulta);
+        spring.putConstraint(SpringLayout.NORTH, step1JL, y - 10, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, step1JL, x + 20, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(numBeneJL);
+        spring.putConstraint(SpringLayout.NORTH, numBeneJL, y + 40, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, numBeneJL, x + 20, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(numBeneTF);
+        spring.putConstraint(SpringLayout.NORTH, numBeneTF, y + 40, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, numBeneTF, x + 190, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(dataJL);
+        spring.putConstraint(SpringLayout.NORTH, dataJL, y + 83, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, dataJL, x + 20, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(diaCB);
+        spring.putConstraint(SpringLayout.NORTH, diaCB, y + 80, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, diaCB, x + 190, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(b1);
+        spring.putConstraint(SpringLayout.NORTH, b1, y + 80, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, b1, x + 240, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(mesCB);
+        spring.putConstraint(SpringLayout.NORTH, mesCB, y + 80, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, mesCB, x + 250, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(b2);
+        spring.putConstraint(SpringLayout.NORTH, b2, y + 80, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, b2, x + 300, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(anoCB);
+        spring.putConstraint(SpringLayout.NORTH, anoCB, y + 80, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, anoCB, x + 310, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(horarioJL);
+        spring.putConstraint(SpringLayout.NORTH, horarioJL, y + 120, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, horarioJL, x + 20, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(horasCB);
+        spring.putConstraint(SpringLayout.NORTH, horasCB, y + 120, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, horasCB, x + 190, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(pt);
+        spring.putConstraint(SpringLayout.NORTH, pt, y + 123, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, pt, x + 240, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(minutosCB);
+        spring.putConstraint(SpringLayout.NORTH, minutosCB, y + 120, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, minutosCB, x + 250, SpringLayout.WEST, buscarConsulta);
+        buscarConsulta.add(buscarCon);
+        spring.putConstraint(SpringLayout.NORTH, buscarCon,  y + 200, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, buscarCon, x +320, SpringLayout.WEST, buscarConsulta);
 
         //Adicionar componentes ao painel que le os dados referentes a anulacao
-        anularConsulta.add(motivoJL);
-        spring.putConstraint(SpringLayout.NORTH, motivoJL, 250, SpringLayout.NORTH, anularConsulta);
-        spring.putConstraint(SpringLayout.WEST, motivoJL, 120, SpringLayout.WEST, anularConsulta);
-        anularConsulta.add(motivoTF);
-        spring.putConstraint(SpringLayout.NORTH, motivoTF, 250, SpringLayout.NORTH, anularConsulta);
-        spring.putConstraint(SpringLayout.WEST, motivoTF, 350, SpringLayout.WEST, anularConsulta);
-        anularConsulta.add(anularCon);
-        spring.putConstraint(SpringLayout.NORTH, anularCon, 330, SpringLayout.NORTH, anularConsulta);
-        spring.putConstraint(SpringLayout.WEST, anularCon, 320, SpringLayout.WEST, anularConsulta);
         anularConsulta.add(step2JL);
-        spring.putConstraint(SpringLayout.NORTH, step2JL, 30, SpringLayout.NORTH, anularConsulta);
-        spring.putConstraint(SpringLayout.WEST, step2JL, 220, SpringLayout.WEST, anularConsulta);
+        spring.putConstraint(SpringLayout.NORTH, step2JL, y - 10, SpringLayout.NORTH, anularConsulta);
+        spring.putConstraint(SpringLayout.WEST, step2JL, x + 20, SpringLayout.WEST, anularConsulta);
+        anularConsulta.add(motivoJL);
+        spring.putConstraint(SpringLayout.NORTH, motivoJL, y + 40, SpringLayout.NORTH, anularConsulta);
+        spring.putConstraint(SpringLayout.WEST, motivoJL, x + 20, SpringLayout.WEST, anularConsulta);
+        anularConsulta.add(motivoTF);
+        spring.putConstraint(SpringLayout.NORTH, motivoTF, y + 40, SpringLayout.NORTH, anularConsulta);
+        spring.putConstraint(SpringLayout.WEST, motivoTF, x + 190, SpringLayout.WEST, anularConsulta);
+        anularConsulta.add(anularCon);
+        spring.putConstraint(SpringLayout.NORTH, anularCon,  y + 200, SpringLayout.NORTH, anularConsulta);
+        spring.putConstraint(SpringLayout.WEST, anularCon, x +320, SpringLayout.WEST, anularConsulta);
 
         //Adicioar os 2 paineis ao painel principal (com card Layout)
         contentPane.add(buscarConsulta, BUSCAR);
         contentPane.add(anularConsulta, ANULAR);
         card.show(contentPane, BUSCAR);
 
+        //Definir configuracoes da JFrame
         super.setTitle("Anular consulta");
-        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        super.setLocation(450, 70);
-        super.setSize(800, 600);
-        super.setResizable(false);
         super.setAlwaysOnTop(true);
         super.setVisible(true);
+        super.setSize(500, 350);
+        super.setLocationRelativeTo(null);
+        super.setResizable(false);
+        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    @Override
+    
     public void actionPerformed(ActionEvent e) {
         JButton auxiliar = (JButton) e.getSource();
 
@@ -185,8 +199,6 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
                 pDia = (int) diaCB.getItemAt(diaCB.getSelectedIndex());
                 pMes = (int) mesCB.getItemAt(mesCB.getSelectedIndex());
                 pAno = (int) anoCB.getItemAt(anoCB.getSelectedIndex());
-
-                System.out.println(pAno + "/" + pMes + "/" + pDia + "     " + pHoras + ":" + pMinutos);
 
                 c = objController.getCtrlConsulta().getConsulta(numBene, new Date(pAno, pMes, pDia, pHoras, pMinutos));
 
@@ -207,7 +219,7 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Você deve informar o motivo da anulação da consulta!");
             } else {
                 objController.getCtrlConsulta().anularConsulta(c);
-                objController.getCtrlFuncionario().anularConsultaDaAgendaDoMedico(c);
+                objController.getCtrFuncionario().anularConsultaDaAgendaDoMedico(c);
                 objController.getCtrlAnulacao().cadastrarAnulacao(c, new Date(), motivo);
                 JOptionPane.showMessageDialog(this, "Consulta anulada!");
                 super.dispose();

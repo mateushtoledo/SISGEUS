@@ -23,7 +23,7 @@ public class LimiteCadastroProntuario extends JFrame implements ActionListener {
 
     public static final String CADASTRO = "CADASTRO DE PRONTUÁRIO";
     public static final String VALIDACA0 = "VALIDAÇÃO DE CONSULTA";
-    public final ImageIcon icone = new ImageIcon("encerrar.png");
+    public final ImageIcon icone = new ImageIcon("sair.png");
 
     public LimiteCadastroProntuario(ControlePrincipal pCtrl) {
         objControle = pCtrl;
@@ -76,14 +76,16 @@ public class LimiteCadastroProntuario extends JFrame implements ActionListener {
             }
         }
         minutos = new JComboBox();
-        minutos.addItem("00");
-        minutos.addItem("30");
+        minutos.addItem(00);
+        minutos.addItem(30);
 
-        //Criar JButton e adicionar listener a ele
+        //Criar objetos do tipo JButton e adicionar listener a eles
         cadastrar = new JButton("Cadastrar dados médicos");
+        cadastrar.setForeground(Color.red);
         cadastrar.addActionListener(this);
         confirmar = new JButton("Buscar consulta");
         confirmar.addActionListener(this);
+        confirmar.setForeground(Color.red);
 
         //Criar JMenuBar e JMenuItem
         barraMenu = new JMenuBar();
@@ -116,82 +118,100 @@ public class LimiteCadastroProntuario extends JFrame implements ActionListener {
         SpringLayout spring = new SpringLayout();
         card = new CardLayout();
 
-        //Obter o painel padrao da JFrame e definir gerenciador de Layout
+        //Obter o Container padrao da JFrame e definir gerenciador de Layout
         contentPane = super.getContentPane();
 
-        //Definir gerenciadores de layout para cada Pael ou container
+        //Definir gerenciadores de layout para cada Painel ou container
         cadastro.setLayout(spring);
         validacao.setLayout(spring);
         contentPane.setLayout(card);
 
-        //Adicionar componenets ao paineld e validacao
-        validacao.add(dataJL);
-        spring.putConstraint(SpringLayout.NORTH, dataJL, 220, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, dataJL, 205, SpringLayout.WEST, validacao);
-        validacao.add(dia);
-        spring.putConstraint(SpringLayout.NORTH, dia, 217, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, dia, 390, SpringLayout.WEST, validacao);
-        validacao.add(b1);
-        spring.putConstraint(SpringLayout.NORTH, b1, 220, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, b1, 445, SpringLayout.WEST, validacao);
-        validacao.add(mes);
-        spring.putConstraint(SpringLayout.NORTH, mes, 217, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, mes, 460, SpringLayout.WEST, validacao);
-        validacao.add(b2);
-        spring.putConstraint(SpringLayout.NORTH, b2, 220, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, b2, 515, SpringLayout.WEST, validacao);
-        validacao.add(ano);
-        spring.putConstraint(SpringLayout.NORTH, ano, 217, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, ano, 530, SpringLayout.WEST, validacao);
-        validacao.add(horarioJL);
-        spring.putConstraint(SpringLayout.NORTH, horarioJL, 273, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, horarioJL, 205, SpringLayout.WEST, validacao);
-        validacao.add(horas);
-        spring.putConstraint(SpringLayout.NORTH, horas, 270, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, horas, 390, SpringLayout.WEST, validacao);
-        validacao.add(pt);
-        spring.putConstraint(SpringLayout.NORTH, pt, 273, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, pt, 445, SpringLayout.WEST, validacao);
-        validacao.add(minutos);
-        spring.putConstraint(SpringLayout.NORTH, minutos, 270, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, minutos, 460, SpringLayout.WEST, validacao);
-        validacao.add(confirmar);
-        spring.putConstraint(SpringLayout.NORTH, confirmar, 335, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, confirmar, 325, SpringLayout.WEST, validacao);
+        int x = 20, y = 40;
+        JPanel line = new JPanel();
+        //line.add(new JLabel("\n"));
+        line.setBackground(new Color(81, 98, 67));
+        spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, validacao);
+        spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, validacao);
+        validacao.add(line);
+
+        //Adicionar componenets ao painel de validacao
         validacao.add(pacienteJL);
-        spring.putConstraint(SpringLayout.NORTH, pacienteJL, 100, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, pacienteJL, 220, SpringLayout.WEST, validacao);
+        spring.putConstraint(SpringLayout.NORTH, pacienteJL, y+3, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, pacienteJL, x+20, SpringLayout.WEST, validacao);
         validacao.add(pacientes);
-        spring.putConstraint(SpringLayout.NORTH, pacientes, 97, SpringLayout.NORTH, validacao);
-        spring.putConstraint(SpringLayout.WEST, pacientes, 390, SpringLayout.WEST, validacao);
+        spring.putConstraint(SpringLayout.NORTH, pacientes, y, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, pacientes, x+180, SpringLayout.WEST, validacao);
+        validacao.add(dataJL);
+        spring.putConstraint(SpringLayout.NORTH, dataJL, y+43, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, dataJL, x+20, SpringLayout.WEST, validacao);
+        validacao.add(dia);
+        spring.putConstraint(SpringLayout.NORTH, dia, y+40, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, dia, x+180, SpringLayout.WEST, validacao);
+        validacao.add(b1);
+        spring.putConstraint(SpringLayout.NORTH, b1, y+43, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, b1, x+230, SpringLayout.WEST, validacao);
+        validacao.add(mes);
+        spring.putConstraint(SpringLayout.NORTH, mes, y+40, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, mes, x+240, SpringLayout.WEST, validacao);
+        validacao.add(b2);
+        spring.putConstraint(SpringLayout.NORTH, b2, y+43, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, b2, x+290, SpringLayout.WEST, validacao);
+        validacao.add(ano);
+        spring.putConstraint(SpringLayout.NORTH, ano, y+40, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, ano, x+300, SpringLayout.WEST, validacao);
+        validacao.add(horarioJL);
+        spring.putConstraint(SpringLayout.NORTH, horarioJL, y+93, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, horarioJL, x+20, SpringLayout.WEST, validacao);
+        validacao.add(horas);
+        spring.putConstraint(SpringLayout.NORTH, horas, y+90, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, horas, x+180, SpringLayout.WEST, validacao);
+        validacao.add(pt);
+        spring.putConstraint(SpringLayout.NORTH, pt, y+90, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, pt, x+230, SpringLayout.WEST, validacao);
+        validacao.add(minutos);
+        spring.putConstraint(SpringLayout.NORTH, minutos, y+90, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, minutos, x+240, SpringLayout.WEST, validacao);
+        validacao.add(confirmar);
+        spring.putConstraint(SpringLayout.NORTH, confirmar, y+230, SpringLayout.NORTH, validacao);
+        spring.putConstraint(SpringLayout.WEST, confirmar, x+170, SpringLayout.WEST, validacao);
 
         //Adicionar componentes ao painel de cadastro
+        JPanel line2 = new JPanel();    
+        //line.add(new JLabel("\n"));
+        line2.setBackground(new Color(81, 98, 67));
+        spring.putConstraint(SpringLayout.NORTH, line2, 0, SpringLayout.NORTH, cadastro);
+        spring.putConstraint(SpringLayout.WEST, line2, 0, SpringLayout.WEST, cadastro);
+        spring.putConstraint(SpringLayout.EAST, line2, 0, SpringLayout.EAST, cadastro);
+        cadastro.add(line2);
         cadastro.add(queixasSP);
-        spring.putConstraint(SpringLayout.NORTH, queixasSP, 50, SpringLayout.NORTH, cadastro);
-        spring.putConstraint(SpringLayout.WEST, queixasSP, 170, SpringLayout.WEST, cadastro);
+        spring.putConstraint(SpringLayout.NORTH, queixasSP, y+10, SpringLayout.NORTH, cadastro);
+        spring.putConstraint(SpringLayout.WEST, queixasSP, x+20, SpringLayout.WEST, cadastro);
         cadastro.add(resumoExameSP);
-        spring.putConstraint(SpringLayout.NORTH, resumoExameSP, 150, SpringLayout.NORTH, cadastro);
-        spring.putConstraint(SpringLayout.WEST, resumoExameSP, 170, SpringLayout.WEST, cadastro);
+        spring.putConstraint(SpringLayout.NORTH, resumoExameSP, y+110, SpringLayout.NORTH, cadastro);
+        spring.putConstraint(SpringLayout.WEST, resumoExameSP, x+20, SpringLayout.WEST, cadastro);
         cadastro.add(resumoDiagnosticoSP);
-        spring.putConstraint(SpringLayout.NORTH, resumoDiagnosticoSP, 250, SpringLayout.NORTH, cadastro);
-        spring.putConstraint(SpringLayout.WEST, resumoDiagnosticoSP, 170, SpringLayout.WEST, cadastro);
+        spring.putConstraint(SpringLayout.NORTH, resumoDiagnosticoSP, y+210, SpringLayout.NORTH, cadastro);
+        spring.putConstraint(SpringLayout.WEST, resumoDiagnosticoSP, x+20, SpringLayout.WEST, cadastro);
         cadastro.add(tratamentoSP);
-        spring.putConstraint(SpringLayout.NORTH, tratamentoSP, 350, SpringLayout.NORTH, cadastro);
-        spring.putConstraint(SpringLayout.WEST, tratamentoSP, 170, SpringLayout.WEST, cadastro);
+        spring.putConstraint(SpringLayout.NORTH, tratamentoSP, y+310, SpringLayout.NORTH, cadastro);
+        spring.putConstraint(SpringLayout.WEST, tratamentoSP, x+20, SpringLayout.WEST, cadastro);
         cadastro.add(cadastrar);
-        spring.putConstraint(SpringLayout.NORTH, cadastrar, 450, SpringLayout.NORTH, cadastro);
-        spring.putConstraint(SpringLayout.WEST, cadastrar, 300, SpringLayout.WEST, cadastro);
+        spring.putConstraint(SpringLayout.NORTH, cadastrar, y+410, SpringLayout.NORTH, cadastro);
+        spring.putConstraint(SpringLayout.WEST, cadastrar, x+320, SpringLayout.WEST, cadastro);
 
+        //Adicionar paineis ao Conainer com CardLayout
         contentPane.add(validacao, VALIDACA0);
         contentPane.add(cadastro, CADASTRO);
 
+        //definir configuracoes da JFrame
         super.setTitle("Cadastro de dados médicos");
         super.setJMenuBar(barraMenu);
-        super.setSize(800, 600);
-        super.setLocation(450, 70);
-        super.setAlwaysOnTop(true);
+        super.setSize(500, 500);
+        super.setLocationRelativeTo(null);
         super.setResizable(false);
-        super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        super.setAlwaysOnTop(true);
         super.setVisible(true);
     }
 
@@ -249,10 +269,10 @@ public class LimiteCadastroProntuario extends JFrame implements ActionListener {
                     for (int i = 0; i < pos - 1; i++) {
                         codigo += pCod.charAt(i);
                     }
-                    //Cadastrar o prontuario nos dados do paciente
-                    boolean test = objControle.getCtrlPaciente().adicionarProntuario(codigo, queixas, resumoExame, resumoDiagnostico, tratamentos, new Date(pAno, pMes, pDia, pHoras, pMinutos));
 
-                    if (test) {
+                    Paciente pac = objControle.getCtrlPaciente().getPaciente(codigo);
+
+                    if (pac != null) {
                         //Cadastrar prontuario na lista de prontuarios
                         objControle.getCtrlProntuario().cadastrarProntuario(codigo, queixas, resumoExame, resumoDiagnostico, tratamentos, new Date(pAno, pMes, pDia, pHoras, pMinutos));
                         JOptionPane.showMessageDialog(this, "Dados médicos cadastrados!");
@@ -269,6 +289,8 @@ public class LimiteCadastroProntuario extends JFrame implements ActionListener {
                         resumoExameTA.setText("");
                         tratamentoTA.setText("");
                         card.show(contentPane, VALIDACA0);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Paciente não encontrado!");
                     }
                 }
             }

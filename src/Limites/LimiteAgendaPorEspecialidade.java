@@ -14,21 +14,21 @@ public class LimiteAgendaPorEspecialidade extends JFrame implements ActionListen
     private JTextArea exibicao;
     private JScrollPane painelRolagem;
     private JButton exibirEventos;
-    private final ImageIcon busca = new ImageIcon("busca.png");
+    private final ImageIcon busca = new ImageIcon("imgs/busca.png");
 
     public LimiteAgendaPorEspecialidade(ControleConsulta pCtrl) {
         objControlador = pCtrl;
 
-        //Criar os JLabel's
-        dataInicial = new JLabel("Data inicial:");
-        dataFinal = new JLabel("Data final:");
+        //Criar os objetos do tipo JLabel
+        dataInicial = new JLabel("Data Inicial:");
+        dataFinal = new JLabel("Data Final:");
         b1 = new JLabel("/");
         b2 = new JLabel("/");
         b3 = new JLabel("/");
         b4 = new JLabel("/");
         icone = new JLabel(busca);
 
-        //Criar os comboBox e adicionar seus devidos itens
+        //Criar os objetos do tipo JComboBox e adicionar seus respectivos itens
         diaInicial = new JComboBox();
         for (int i = 1; i <= 30; i++) {
             diaInicial.addItem(i);
@@ -55,7 +55,7 @@ public class LimiteAgendaPorEspecialidade extends JFrame implements ActionListen
         anoFinal.addItem(2018);
 
         //Criar ScrollPane onde serao exibidas as consultas
-        exibicao = new JTextArea(20, 50);
+        exibicao = new JTextArea(20, 60);
         exibicao.setText("Você não buscou ainda!");
         exibicao.setEditable(false);
         painelRolagem = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -67,64 +67,75 @@ public class LimiteAgendaPorEspecialidade extends JFrame implements ActionListen
         exibirEventos.setForeground(Color.red);
         exibirEventos.addActionListener(this);
 
-        //Criar gerenciador de Layout e painel onde serao adicionados os componentes
+        //Criar gerenciador de Layout e "painel" onde serao adicionados os componentes
         SpringLayout spring = new SpringLayout();
         Container contentPane = super.getContentPane();
         contentPane.setLayout(spring);
 
-        //Adicionar componentes ao painel (Container padrao da JFrame)
-        contentPane.add(painelRolagem);
-        spring.putConstraint(SpringLayout.NORTH, painelRolagem, 200, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, painelRolagem, 130, SpringLayout.WEST, contentPane);
-        contentPane.add(icone);
-        spring.putConstraint(SpringLayout.NORTH, icone, 40, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, icone, 130, SpringLayout.WEST, contentPane);
-        contentPane.add(dataInicial);
-        spring.putConstraint(SpringLayout.NORTH, dataInicial, 65, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, dataInicial, 270, SpringLayout.WEST, contentPane);
-        contentPane.add(diaInicial);
-        spring.putConstraint(SpringLayout.NORTH, diaInicial, 63, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, diaInicial, 390, SpringLayout.WEST, contentPane);
-        contentPane.add(b1);
-        spring.putConstraint(SpringLayout.NORTH, b1, 65, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, b1, 445, SpringLayout.WEST, contentPane);
-        contentPane.add(mesInicial);
-        spring.putConstraint(SpringLayout.NORTH, mesInicial, 63, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, mesInicial, 460, SpringLayout.WEST, contentPane);
-        contentPane.add(b2);
-        spring.putConstraint(SpringLayout.NORTH, b2, 65, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, b2, 510, SpringLayout.WEST, contentPane);
-        contentPane.add(anoInicial);
-        spring.putConstraint(SpringLayout.NORTH, anoInicial, 63, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, anoInicial, 525, SpringLayout.WEST, contentPane);
-        contentPane.add(dataFinal);
-        spring.putConstraint(SpringLayout.NORTH, dataFinal, 100, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, dataFinal, 270, SpringLayout.WEST, contentPane);
-        contentPane.add(diaFinal);
-        spring.putConstraint(SpringLayout.NORTH, diaFinal, 97, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, diaFinal, 390, SpringLayout.WEST, contentPane);
-        contentPane.add(b3);
-        spring.putConstraint(SpringLayout.NORTH, b3, 100, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, b3, 445, SpringLayout.WEST, contentPane);
-        contentPane.add(mesFinal);
-        spring.putConstraint(SpringLayout.NORTH, mesFinal, 97, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, mesFinal, 460, SpringLayout.WEST, contentPane);
-        contentPane.add(b4);
-        spring.putConstraint(SpringLayout.NORTH, b4, 100, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, b4, 510, SpringLayout.WEST, contentPane);
-        contentPane.add(anoFinal);
-        spring.putConstraint(SpringLayout.NORTH, anoFinal, 97, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, anoFinal, 525, SpringLayout.WEST, contentPane);
-        contentPane.add(exibirEventos);
-        spring.putConstraint(SpringLayout.NORTH, exibirEventos, 145, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, exibirEventos, 435, SpringLayout.WEST, contentPane);
+        int x = -10, y = -30;
+        JPanel line = new JPanel();
+        //line.add(new JLabel("\n"));
+        line.setBackground(new Color(81, 98, 67));
+        spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, contentPane);
+        spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, contentPane);
+        contentPane.add(line);
 
+        //Adicionar componentes ao "painel" (Container padrao da JFrame)
+        contentPane.add(icone);
+        spring.putConstraint(SpringLayout.NORTH, icone, y + 50, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, icone, x +30, SpringLayout.WEST, contentPane);
+        contentPane.add(dataInicial);
+        spring.putConstraint(SpringLayout.NORTH, dataInicial, y + 63, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, dataInicial, x + 150, SpringLayout.WEST, contentPane);
+        contentPane.add(diaInicial);
+        spring.putConstraint(SpringLayout.NORTH, diaInicial, y + 60, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, diaInicial, x + 240, SpringLayout.WEST, contentPane);
+        contentPane.add(b1);
+        spring.putConstraint(SpringLayout.NORTH, b1, y + 63, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, b1, x + 290, SpringLayout.WEST, contentPane);
+        contentPane.add(mesInicial);
+        spring.putConstraint(SpringLayout.NORTH, mesInicial, y + 60, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, mesInicial, x + 300, SpringLayout.WEST, contentPane);
+        contentPane.add(b2);
+        spring.putConstraint(SpringLayout.NORTH, b2, y + 63, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, b2, x + 350, SpringLayout.WEST, contentPane);
+        contentPane.add(anoInicial);
+        spring.putConstraint(SpringLayout.NORTH, anoInicial, y + 60, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, anoInicial, x + 360, SpringLayout.WEST, contentPane);
+        contentPane.add(dataFinal);
+        spring.putConstraint(SpringLayout.NORTH, dataFinal, y + 63, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, dataFinal, x + 440, SpringLayout.WEST, contentPane);
+        contentPane.add(diaFinal);
+        spring.putConstraint(SpringLayout.NORTH, diaFinal, y + 60, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, diaFinal, x + 520, SpringLayout.WEST, contentPane);
+        contentPane.add(b3);
+        spring.putConstraint(SpringLayout.NORTH, b3, y + 63, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, b3, x + 570, SpringLayout.WEST, contentPane);
+        contentPane.add(mesFinal);
+        spring.putConstraint(SpringLayout.NORTH, mesFinal, y + 60, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, mesFinal, x + 580, SpringLayout.WEST, contentPane);
+        contentPane.add(b4);
+        spring.putConstraint(SpringLayout.NORTH, b4, y + 63, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, b4, x + 630, SpringLayout.WEST, contentPane);
+        contentPane.add(anoFinal);
+        spring.putConstraint(SpringLayout.NORTH, anoFinal, y + 60, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, anoFinal, x + 640, SpringLayout.WEST, contentPane);
+        contentPane.add(exibirEventos);
+        spring.putConstraint(SpringLayout.NORTH, exibirEventos, y + 60, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, exibirEventos, x + 730, SpringLayout.WEST, contentPane);
+
+        contentPane.add(painelRolagem);
+        spring.putConstraint(SpringLayout.NORTH, painelRolagem, y + 100, SpringLayout.NORTH, contentPane);
+        spring.putConstraint(SpringLayout.WEST, painelRolagem, x + 150, SpringLayout.WEST, contentPane);
+        //Definir algumas configuracoes da JFrame
         super.setTitle("Agenda da unidade ordenada por especialidade");
-        super.setSize(800, 600);
-        super.setLocation(450, 70);
+        super.setSize(870, 470);
+        super.setLocationRelativeTo(null);
+        super.setResizable(false);
+        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         super.setAlwaysOnTop(true);
         super.setVisible(true);
-        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     @Override

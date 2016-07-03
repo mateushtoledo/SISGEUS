@@ -3,8 +3,7 @@ package Entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Anulacao implements Serializable {
-
+public class Anulacao implements Serializable{
     private Consulta consultaAnulada;
     private Date data;
     private String motivo;
@@ -38,5 +37,5 @@ public class Anulacao implements Serializable {
     public String getMotivo() {
         return motivo;
     }
-
+    
 }

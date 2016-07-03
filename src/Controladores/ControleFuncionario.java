@@ -3,22 +3,73 @@ package Controladores;
 import java.util.*;
 import java.io.*;
 import Entidades.*;
-import Limites.LimiteCadastroFuncionario;
+import Limites.*;
+import javax.swing.*;
 
 public class ControleFuncionario {
 
     private ArrayList<Funcionario> objFuncionarios;
+    private limiteFuncionario limite;
 
-    public ControleFuncionario() {
-        objFuncionarios = new ArrayList<>();
+    public ControleFuncionario() throws Exception {
+        objFuncionarios = new ArrayList<Funcionario>();
+
+        recuperarFuncionarios();
     }
-
+    
+    public void interfaceCadastroFuncionario() {
+        limite = new limiteFuncionario(this);
+    }
+    
     public void cadastrarFuncionario(String pNome, String pNumFuncional, String pFuncao) {
         objFuncionarios.add(new Funcionario(pNome, pNumFuncional, pFuncao));
     }
 
     public void cadastrarMedico(String pNome, String pNumFuncional, String pFuncao, String pEspecializacao) {
         objFuncionarios.add(new Medico(pNome, pNumFuncional, pFuncao, pEspecializacao));
+    }
+
+    public ArrayList<Funcionario> obterAtendentes() {
+        ArrayList<Funcionario> objAtendentes = new ArrayList<Funcionario>();
+
+        for (Funcionario func : objFuncionarios) {
+            if (func.getFuncao().equals(Funcionario.ATENDENTE)) {
+                objAtendentes.add(func);
+            }
+        }
+        return objAtendentes;
+    }
+
+    public ArrayList<Medico> obterMedicos() {
+        ArrayList<Medico> objMedicos = new ArrayList<Medico>();
+
+        for (Funcionario func : objFuncionarios) {
+            if (func instanceof Medico) {
+                objMedicos.add((Medico) func);
+            }
+        }
+        return objMedicos;
+    }
+
+    public String loginFuncionario(String pNome, String pNumFuncional) {
+        for (Funcionario func : objFuncionarios) {
+            if (func.getFuncao().equals(Funcionario.ATENDENTE)) {
+                if (func.getNome().equals(pNome) && func.getNumFuncional().equals(pNumFuncional)) {
+                    return func.getFuncao();
+                }
+
+            } else if (func.getFuncao().equals(Funcionario.MEDICO)) {
+                if (func.getNome().equals(pNome) && func.getNumFuncional().equals(pNumFuncional)) {
+                    return func.getFuncao();
+                }
+            }
+        }
+        //if (pNome.equals("Jean") && pNumFuncional.equals("35138")) {
+        if (pNome.equals("Jean Carlos de Oliveira") && pNumFuncional.equals("35138")) {
+        
+            return "Responsável";
+        }
+        return "";
     }
 
     public Medico marcarConsulta(String pEspecialidade, String pNumBeneficiarioPaciente, String pMotivo, String pNumFuncionalFuncionario, Date pData, Date pRegistro) {
@@ -48,66 +99,8 @@ public class ControleFuncionario {
         }
     }
 
-    public void interfaceCadastroFuncionario() {
-        new LimiteCadastroFuncionario(this);
-    }
-
-    public ArrayList<Funcionario> obterAtendentes() {
-        ArrayList<Funcionario> objAtendentes = new ArrayList<>();
-
-        for (Funcionario func : objFuncionarios) {
-            if (func.getFuncao().equals(Funcionario.ATENDENTE)) {
-                objAtendentes.add(func);
-            }
-        }
-
-        return objAtendentes;
-    }
-
-    public ArrayList<Medico> obterMedicos() {
-        ArrayList<Medico> objMedicos = new ArrayList<>();
-
-        for (Funcionario func : objFuncionarios) {
-            if (func instanceof Medico) {
-                objMedicos.add((Medico) func);
-            }
-        }
-
-        return objMedicos;
-    }
-
-    public boolean loginAtendente(String pNome, String pNumFuncional) {
-        for (Funcionario func : objFuncionarios) {
-            if (func.getFuncao().equals(Funcionario.ATENDENTE)) {
-                if (func.getNome().equals(pNome) && func.getNumFuncional().equals(pNumFuncional)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean loginMedico(String pNome, String pNumFuncional) {
-        for (Funcionario func : objFuncionarios) {
-            if (func.getFuncao().equals(Funcionario.MEDICO)) {
-                if (func.getNome().equals(pNome) && func.getNumFuncional().equals(pNumFuncional)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean loginResponsavelPorPessoal(String pNome, String pNumFuncional) {
-        if (pNome.equals("Jean Carlos de Oliveira") && pNumFuncional.equals("35138")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public void salvarFuncionarios() throws Exception {
-        FileOutputStream fileOs = new FileOutputStream("funcionarios.dat");
+        FileOutputStream fileOs = new FileOutputStream("data/funcionarios.dat");
         ObjectOutputStream objOs = new ObjectOutputStream(fileOs);
         objOs.writeObject(objFuncionarios);
         objOs.flush();
@@ -115,7 +108,7 @@ public class ControleFuncionario {
     }
 
     public void recuperarFuncionarios() throws Exception {
-        File arquivo = new File("funcionarios.dat");
+        File arquivo = new File("data/funcionarios.dat");
 
         if (arquivo.exists()) {
             FileInputStream fileIs = new FileInputStream(arquivo);

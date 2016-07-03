@@ -9,8 +9,8 @@ import javax.swing.*;
 public class LimiteAltDadosPaciente extends JFrame implements ActionListener {
 
     private ControlePaciente controlador;
-    private JTextField telefoneTF, enderecoTF, numBeneTF, mensagem;
-    private JLabel telefoneJL, enderecoJL, numeroBeneJL;
+    private JTextField telefoneTF, enderecoTF, numBeneTF;
+    private JLabel telefoneJL, enderecoJL, numeroBeneJL, mensagem;
     private JPanel painel;
     private JButton buscar, alterar;
 
@@ -26,53 +26,67 @@ public class LimiteAltDadosPaciente extends JFrame implements ActionListener {
         telefoneTF = new JTextField(20);
         enderecoTF = new JTextField(20);
         numBeneTF = new JTextField(12);
-        mensagem = new JTextField(50);
+        mensagem = new JLabel("  Se você desejar alterar apenas um dos campos de \ncontato basta deixar o outro vazio!  ");
         mensagem.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.red), "Aviso:"));
-        mensagem.setText("Se você desejar alterar apenas um dos campos de contato basta deixar o outro vazio!");
-        mensagem.setEditable(false);
 
         //Criar o JButton
-        alterar = new JButton("Alterar dados");
+        alterar = new JButton(" Alterar dados ");
         alterar.addActionListener(this);
 
-        //Criar os SubPainéis
-        JPanel top = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        top.add(numeroBeneJL);
-        top.add(numBeneTF);
-        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        p1.add(enderecoJL);
-        p1.add(enderecoTF);
-        JPanel p2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        p2.add(telefoneJL);
-        p2.add(telefoneTF);
-        JPanel sub = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        sub.add(alterar);
-        JPanel mini = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        mini.add(mensagem);
+        //Criar o gerenciador de Layout
+        SpringLayout spring = new SpringLayout();
+        //Criar o painel de cadastro de funcionário e adicionar componentes a ele
+        JPanel painelFuncionario = new JPanel();
+        painelFuncionario.setLayout(spring);
+        
+        int x = 20, y = 40;
+        JPanel line = new JPanel();
+        //line.add(new JLabel("\n"));
+        line.setBackground(new Color(81, 98, 67));
+        spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, painelFuncionario);
+        spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, painelFuncionario);
+        painelFuncionario.add(line);
+        
+        spring.putConstraint(SpringLayout.NORTH, mensagem, y - 10, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, mensagem, x + 20, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(mensagem);
+        
+        spring.putConstraint(SpringLayout.NORTH, numeroBeneJL, y + 60, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, numeroBeneJL, x + 20, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(numeroBeneJL);
+        
+        spring.putConstraint(SpringLayout.NORTH, numBeneTF, y + 60, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, numBeneTF, x + 160, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(numBeneTF);
+        
+        spring.putConstraint(SpringLayout.NORTH, enderecoJL, y + 90, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, enderecoJL, x + 20, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(enderecoJL);
+        
+        spring.putConstraint(SpringLayout.NORTH, enderecoTF, y + 90, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, enderecoTF, x + 160, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(enderecoTF);
+        
+        spring.putConstraint(SpringLayout.NORTH, telefoneJL, y + 120, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, telefoneJL, x + 20, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(telefoneJL);
+        
+        spring.putConstraint(SpringLayout.NORTH, telefoneTF, y + 120, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, telefoneTF, x + 160, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(telefoneTF);
 
-        painel = new JPanel(new GridLayout(4, 1, 0, 5));
-        painel.add(top);
-        painel.add(p1);
-        painel.add(p2);
-        painel.add(sub);
-
-        //
-        Container contentPane = super.getContentPane();
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-        contentPane.add(Box.createVerticalGlue());
-        contentPane.add(mini);
-        contentPane.add(Box.createVerticalGlue());
-        contentPane.add(painel);
-        contentPane.add(Box.createVerticalGlue());
-        contentPane.add(Box.createVerticalGlue());
-        contentPane.add(Box.createVerticalGlue());
-
+        spring.putConstraint(SpringLayout.NORTH, alterar, y + 190, SpringLayout.NORTH, painelFuncionario);
+        spring.putConstraint(SpringLayout.WEST, alterar, x + 410, SpringLayout.WEST, painelFuncionario);
+        painelFuncionario.add(alterar);
+        
+        add(painelFuncionario);
         //Setar configuracoes da JFrame
-        super.setTitle("Alteração dos dados de contato de paciente");
-        super.setSize(800, 600);
-        super.setResizable(false);
-        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        super.setLocation(450, 70);
+        setTitle("Alteração dos dados de contato de paciente");
+        setSize(600, 330);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         super.setAlwaysOnTop(true);
         super.setVisible(true);
     }
