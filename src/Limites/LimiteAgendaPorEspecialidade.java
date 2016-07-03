@@ -84,7 +84,7 @@ public class LimiteAgendaPorEspecialidade extends JFrame implements ActionListen
         //Adicionar componentes ao "painel" (Container padrao da JFrame)
         contentPane.add(icone);
         spring.putConstraint(SpringLayout.NORTH, icone, y + 50, SpringLayout.NORTH, contentPane);
-        spring.putConstraint(SpringLayout.WEST, icone, x +30, SpringLayout.WEST, contentPane);
+        spring.putConstraint(SpringLayout.WEST, icone, x + 30, SpringLayout.WEST, contentPane);
         contentPane.add(dataInicial);
         spring.putConstraint(SpringLayout.NORTH, dataInicial, y + 63, SpringLayout.NORTH, contentPane);
         spring.putConstraint(SpringLayout.WEST, dataInicial, x + 150, SpringLayout.WEST, contentPane);

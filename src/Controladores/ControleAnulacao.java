@@ -4,37 +4,33 @@ import Entidades.*;
 import java.io.*;
 import java.util.*;
 
-public class ControleAnulacao{
+public class ControleAnulacao {
+
     private ArrayList<Anulacao> objAnulacoes;
 
-    public ControleAnulacao()
-    {
+    public ControleAnulacao() {
         objAnulacoes = new ArrayList<>();
     }
-    
-    public void cadastrarAnulacao(Consulta pConsultaAnulada, Date pData, String pMotivo)
-    {
+
+    public void cadastrarAnulacao(Consulta pConsultaAnulada, Date pData, String pMotivo) {
         objAnulacoes.add(new Anulacao(pConsultaAnulada, pData, pMotivo));
     }
-    
-    public void salvarAnulacoes() throws Exception
-    {
+
+    public void salvarAnulacoes() throws Exception {
         FileOutputStream fileOs = new FileOutputStream("data/anulacoes.dat");
         ObjectOutputStream objOs = new ObjectOutputStream(fileOs);
         objOs.writeObject(objAnulacoes);
         objOs.flush();
         objOs.close();
     }
-    
-    public void recuperarAnulacoes() throws Exception
-    {
+
+    public void recuperarAnulacoes() throws Exception {
         File arquivo = new File("data/anulacoes.dat");
-        
-        if(arquivo.exists())
-        {
+
+        if (arquivo.exists()) {
             FileInputStream fileIs = new FileInputStream(arquivo);
             ObjectInputStream objIs = new ObjectInputStream(fileIs);
-            objAnulacoes = (ArrayList<Anulacao>)objIs.readObject();
+            objAnulacoes = (ArrayList<Anulacao>) objIs.readObject();
             objIs.close();
         }
     }

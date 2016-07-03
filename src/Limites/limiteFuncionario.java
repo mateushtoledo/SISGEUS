@@ -84,7 +84,7 @@ public class limiteFuncionario extends JFrame implements ActionListener {
         painelFuncionario.setLayout(spring);
         painelFuncionario.add(aviso);
         int x = 20, y = 20;
-        
+
         JPanel line = new JPanel();
         //line.add(new JLabel("\n"));
         line.setBackground(new Color(81, 98, 67));
@@ -92,7 +92,7 @@ public class limiteFuncionario extends JFrame implements ActionListener {
         spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, painelFuncionario);
         spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, painelFuncionario);
-        
+
         spring.putConstraint(SpringLayout.NORTH, aviso, y + 10, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, aviso, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(nomeJL);
@@ -132,7 +132,7 @@ public class limiteFuncionario extends JFrame implements ActionListener {
         setResizable(false);
         //setUndecorated(true);
         //getRootPane().setBorder(BorderFactory.createLineBorder(new Color(81, 98, 67)));
-       // getRootPane().setBorder(BorderFactory.createEtchedBorder());
+        // getRootPane().setBorder(BorderFactory.createEtchedBorder());
         setVisible(true);
     }
 
@@ -174,7 +174,7 @@ public class limiteFuncionario extends JFrame implements ActionListener {
                 numFuncionalTF.setText("");
             }
         } else {
-            int op = JOptionPane.showConfirmDialog(this, "Deseja encerrar o cadastro?","Encerrar o cadastro",
+            int op = JOptionPane.showConfirmDialog(this, "Deseja encerrar o cadastro?", "Encerrar o cadastro",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.INFORMATION_MESSAGE);
 

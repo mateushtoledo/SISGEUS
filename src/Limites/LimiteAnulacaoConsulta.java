@@ -149,8 +149,8 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
         spring.putConstraint(SpringLayout.NORTH, minutosCB, y + 120, SpringLayout.NORTH, buscarConsulta);
         spring.putConstraint(SpringLayout.WEST, minutosCB, x + 250, SpringLayout.WEST, buscarConsulta);
         buscarConsulta.add(buscarCon);
-        spring.putConstraint(SpringLayout.NORTH, buscarCon,  y + 200, SpringLayout.NORTH, buscarConsulta);
-        spring.putConstraint(SpringLayout.WEST, buscarCon, x +320, SpringLayout.WEST, buscarConsulta);
+        spring.putConstraint(SpringLayout.NORTH, buscarCon, y + 200, SpringLayout.NORTH, buscarConsulta);
+        spring.putConstraint(SpringLayout.WEST, buscarCon, x + 320, SpringLayout.WEST, buscarConsulta);
 
         //Adicionar componentes ao painel que le os dados referentes a anulacao
         anularConsulta.add(step2JL);
@@ -163,8 +163,8 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
         spring.putConstraint(SpringLayout.NORTH, motivoTF, y + 40, SpringLayout.NORTH, anularConsulta);
         spring.putConstraint(SpringLayout.WEST, motivoTF, x + 190, SpringLayout.WEST, anularConsulta);
         anularConsulta.add(anularCon);
-        spring.putConstraint(SpringLayout.NORTH, anularCon,  y + 200, SpringLayout.NORTH, anularConsulta);
-        spring.putConstraint(SpringLayout.WEST, anularCon, x +320, SpringLayout.WEST, anularConsulta);
+        spring.putConstraint(SpringLayout.NORTH, anularCon, y + 200, SpringLayout.NORTH, anularConsulta);
+        spring.putConstraint(SpringLayout.WEST, anularCon, x + 320, SpringLayout.WEST, anularConsulta);
 
         //Adicioar os 2 paineis ao painel principal (com card Layout)
         contentPane.add(buscarConsulta, BUSCAR);
@@ -181,7 +181,6 @@ public class LimiteAnulacaoConsulta extends JFrame implements ActionListener {
         super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    
     public void actionPerformed(ActionEvent e) {
         JButton auxiliar = (JButton) e.getSource();
 

@@ -16,11 +16,11 @@ public class ControleFuncionario {
 
         recuperarFuncionarios();
     }
-    
+
     public void interfaceCadastroFuncionario() {
         limite = new limiteFuncionario(this);
     }
-    
+
     public void cadastrarFuncionario(String pNome, String pNumFuncional, String pFuncao) {
         objFuncionarios.add(new Funcionario(pNome, pNumFuncional, pFuncao));
     }
@@ -66,7 +66,7 @@ public class ControleFuncionario {
         }
         //if (pNome.equals("Jean") && pNumFuncional.equals("35138")) {
         if (pNome.equals("Jean Carlos de Oliveira") && pNumFuncional.equals("35138")) {
-        
+
             return "Responsável";
         }
         return "";

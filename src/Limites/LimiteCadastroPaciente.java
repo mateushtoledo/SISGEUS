@@ -69,7 +69,7 @@ public class LimiteCadastroPaciente extends JFrame implements ActionListener {
 
         //Adicionar componentes ao painel
         int x = 20, y = 40;
-            
+
         JPanel line = new JPanel();
         //line.add(new JLabel("\n"));
         line.setBackground(new Color(81, 98, 67));
@@ -77,7 +77,7 @@ public class LimiteCadastroPaciente extends JFrame implements ActionListener {
         spring.putConstraint(SpringLayout.NORTH, line, 0, SpringLayout.NORTH, painel);
         spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, painel);
         spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, painel);
-        
+
         spring.putConstraint(SpringLayout.NORTH, nomeJL, y + 10, SpringLayout.NORTH, painel);
         spring.putConstraint(SpringLayout.WEST, nomeJL, x + 20, SpringLayout.WEST, painel);
         painel.add(nomeJL);

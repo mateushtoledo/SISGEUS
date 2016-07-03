@@ -38,7 +38,7 @@ public class LimiteAltDadosPaciente extends JFrame implements ActionListener {
         //Criar o painel de cadastro de funcionário e adicionar componentes a ele
         JPanel painelFuncionario = new JPanel();
         painelFuncionario.setLayout(spring);
-        
+
         int x = 20, y = 40;
         JPanel line = new JPanel();
         //line.add(new JLabel("\n"));
@@ -47,31 +47,31 @@ public class LimiteAltDadosPaciente extends JFrame implements ActionListener {
         spring.putConstraint(SpringLayout.WEST, line, 0, SpringLayout.WEST, painelFuncionario);
         spring.putConstraint(SpringLayout.EAST, line, 0, SpringLayout.EAST, painelFuncionario);
         painelFuncionario.add(line);
-        
+
         spring.putConstraint(SpringLayout.NORTH, mensagem, y - 10, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, mensagem, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(mensagem);
-        
+
         spring.putConstraint(SpringLayout.NORTH, numeroBeneJL, y + 60, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, numeroBeneJL, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(numeroBeneJL);
-        
+
         spring.putConstraint(SpringLayout.NORTH, numBeneTF, y + 60, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, numBeneTF, x + 160, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(numBeneTF);
-        
+
         spring.putConstraint(SpringLayout.NORTH, enderecoJL, y + 90, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, enderecoJL, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(enderecoJL);
-        
+
         spring.putConstraint(SpringLayout.NORTH, enderecoTF, y + 90, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, enderecoTF, x + 160, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(enderecoTF);
-        
+
         spring.putConstraint(SpringLayout.NORTH, telefoneJL, y + 120, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, telefoneJL, x + 20, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(telefoneJL);
-        
+
         spring.putConstraint(SpringLayout.NORTH, telefoneTF, y + 120, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, telefoneTF, x + 160, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(telefoneTF);
@@ -79,7 +79,7 @@ public class LimiteAltDadosPaciente extends JFrame implements ActionListener {
         spring.putConstraint(SpringLayout.NORTH, alterar, y + 190, SpringLayout.NORTH, painelFuncionario);
         spring.putConstraint(SpringLayout.WEST, alterar, x + 410, SpringLayout.WEST, painelFuncionario);
         painelFuncionario.add(alterar);
-        
+
         add(painelFuncionario);
         //Setar configuracoes da JFrame
         setTitle("Alteração dos dados de contato de paciente");

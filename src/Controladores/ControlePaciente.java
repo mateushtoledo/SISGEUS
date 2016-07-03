@@ -27,22 +27,17 @@ public class ControlePaciente {
         objPacientes.add(new Paciente(pNome, pNumBeneficiaro, pSexo, pEndereco, pTelefone, pNascimento));
     }
 
-       
     //Metodo que cadastra o falecimento de determinado paciente.
     //O falecimento nao implica na exclusao dos dados, mas sim em salva-los
     //separados dos demais.
-    public void cadastrarFalecimento(String pNumBeneficiario)
-    {
-        for(int i=0 ; i<objPacientes.size() ; i++)
-        {
-            if(objPacientes.get(i).getNumBeneficiario().equalsIgnoreCase(pNumBeneficiario))
-            {
+    public void cadastrarFalecimento(String pNumBeneficiario) {
+        for (int i = 0; i < objPacientes.size(); i++) {
+            if (objPacientes.get(i).getNumBeneficiario().equalsIgnoreCase(pNumBeneficiario)) {
                 objFalecidos.add(objPacientes.get(i));
                 objPacientes.remove(i);
             }
         }
     }
-
 
     public void alterarEndereco(Paciente pac, String pEndereco) {
         pac.setEndereco(pEndereco);

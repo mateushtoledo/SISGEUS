@@ -181,19 +181,19 @@ public class LimiteHistoricoConsultas extends JFrame implements ActionListener {
         //Adicionar componentes ao painel de cadastro
         painel2.add(queixasSP);
         spring.putConstraint(SpringLayout.NORTH, queixasSP, y + 55, SpringLayout.NORTH, painel2);
-        spring.putConstraint(SpringLayout.WEST, queixasSP, x+20, SpringLayout.WEST, painel2);
+        spring.putConstraint(SpringLayout.WEST, queixasSP, x + 20, SpringLayout.WEST, painel2);
         painel2.add(resumoExameSP);
-        spring.putConstraint(SpringLayout.NORTH, resumoExameSP, y +  155, SpringLayout.NORTH, painel2);
-        spring.putConstraint(SpringLayout.WEST, resumoExameSP, x+20, SpringLayout.WEST, painel2);
+        spring.putConstraint(SpringLayout.NORTH, resumoExameSP, y + 155, SpringLayout.NORTH, painel2);
+        spring.putConstraint(SpringLayout.WEST, resumoExameSP, x + 20, SpringLayout.WEST, painel2);
         painel2.add(resumoDiagnosticoSP);
         spring.putConstraint(SpringLayout.NORTH, resumoDiagnosticoSP, y + 255, SpringLayout.NORTH, painel2);
-        spring.putConstraint(SpringLayout.WEST, resumoDiagnosticoSP, x+20, SpringLayout.WEST, painel2);
+        spring.putConstraint(SpringLayout.WEST, resumoDiagnosticoSP, x + 20, SpringLayout.WEST, painel2);
         painel2.add(tratamentoSP);
         spring.putConstraint(SpringLayout.NORTH, tratamentoSP, y + 355, SpringLayout.NORTH, painel2);
-        spring.putConstraint(SpringLayout.WEST, tratamentoSP, x+20, SpringLayout.WEST, painel2);
+        spring.putConstraint(SpringLayout.WEST, tratamentoSP, x + 20, SpringLayout.WEST, painel2);
         painel2.add(voltar);
         spring.putConstraint(SpringLayout.NORTH, voltar, y + 475, SpringLayout.NORTH, painel2);
-        spring.putConstraint(SpringLayout.WEST, voltar, x+20, SpringLayout.WEST, painel2);
+        spring.putConstraint(SpringLayout.WEST, voltar, x + 20, SpringLayout.WEST, painel2);
 
         //Obter container da JFrame e adicionar componentes a ele
         card = new CardLayout();

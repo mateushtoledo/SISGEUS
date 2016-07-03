@@ -127,7 +127,7 @@ public class LimiteMarcarConsulta extends JFrame implements ActionListener {
         spring.putConstraint(SpringLayout.WEST, minutos, x + 200, SpringLayout.WEST, painel);
         painel.add(especialidadeJL);
         spring.putConstraint(SpringLayout.NORTH, especialidadeJL, y + 140, SpringLayout.NORTH, painel);
-        spring.putConstraint(SpringLayout.WEST, especialidadeJL, x-20, SpringLayout.WEST, painel);
+        spring.putConstraint(SpringLayout.WEST, especialidadeJL, x - 20, SpringLayout.WEST, painel);
         painel.add(especialidadeTF);
         spring.putConstraint(SpringLayout.NORTH, especialidadeTF, y + 140, SpringLayout.NORTH, painel);
         spring.putConstraint(SpringLayout.WEST, especialidadeTF, x + 140, SpringLayout.WEST, painel);
